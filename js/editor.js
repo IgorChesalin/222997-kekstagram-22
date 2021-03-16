@@ -68,4 +68,4 @@ buttonMinus.addEventListener('click', () => {
   imagePreview.style.transform = 'scale(' + scale + ')';
 })
 
-
+export { closeModal };

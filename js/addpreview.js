@@ -1,4 +1,3 @@
-import photos from './data.js';
 import {show} from './big-photo.js';
 
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -10,7 +9,7 @@ const renderPhoto = (picture) => {
   photoPreview.querySelector('.picture__img').src = picture.url;
   photoPreview.querySelector('.picture__likes').textContent = picture.likes;
   photoPreview.querySelector('.picture__comments').textContent = picture.comments.length;
-  
+
   photoPreview.addEventListener('click', (evt) => {
     evt.preventDefault();
     show(picture);
@@ -19,7 +18,7 @@ const renderPhoto = (picture) => {
   return photoPreview;
 };
 
-const renderPhotos = () => {
+const renderPhotos = (photos) => {
   let picturesListFragment = document.createDocumentFragment();
 
   photos.forEach((photo) => {
