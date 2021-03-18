@@ -1,3 +1,4 @@
+import { checkEsc } from './util.js';
 const bigPicture = document.querySelector('.big-picture');
 const scrollOff = document.querySelector('body');
 const bigPictureClose = document.querySelector('.big-picture__cancel');
@@ -13,6 +14,7 @@ const onBigPictureCloseClick = () => {
   scrollOff.classList.remove('modal-open');
   bigPictureClose.removeEventListener('click', onBigPictureCloseClick);
   commentList.innerHTML = '';
+  document.removeEventListener('keydown', onBigPictureEscKeyDown)
 };
 
 // функция вывода комментариев
@@ -39,6 +41,12 @@ const renderComments = (comments) => {
   commentList.appendChild(commentsListFragment);
 }
 
+const onBigPictureEscKeyDown = (evt) => {
+  if (checkEsc(evt)) {
+    onBigPictureCloseClick()
+  }
+}
+
 // функция вывода большой картинки/поста
 const show = (picture) => {
   scrollOff.classList.add('modal-open');
@@ -49,6 +57,8 @@ const show = (picture) => {
 
   bigPictureClose.addEventListener('click', onBigPictureCloseClick);
   bigPicture.classList.remove('hidden');
+
+  document.addEventListener('keydown', onBigPictureEscKeyDown)
 
   renderComments(picture.comments)
 };

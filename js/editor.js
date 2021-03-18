@@ -1,3 +1,6 @@
+import { request } from './fetch.js';
+import { showError, showSuccess } from './alerts.js';
+
 const scrollOff = document.querySelector('body');
 const uploadModal = document.querySelector('.img-upload__overlay');
 const uploadInput = document.querySelector('#upload-file');
@@ -69,3 +72,24 @@ buttonMinus.addEventListener('click', () => {
 })
 
 
+// Отправляем фотку
+const uploadForm = document.querySelector('.img-upload__form');
+
+const onSuccess = () => {
+  showSuccess('Ура!')
+  closeModal();
+  uploadForm.reset();
+}
+
+const onError = () => {
+  showError('ЧТо-то пошло не так', 'Загрузить другой файл');
+}
+
+
+uploadForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
+  request(onSuccess, onError, 'POST', new FormData(evt.target))
+})
+
+export { closeModal };
