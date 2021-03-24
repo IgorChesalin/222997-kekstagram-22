@@ -12,7 +12,6 @@ const request = (onSuccess, onError, method, data) => {
     .then((response) => response.json())
     .then((response) => {
       onSuccess(response)
-
     })
     .catch(() => {
       onError()

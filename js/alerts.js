@@ -22,9 +22,9 @@ const showError = (text, button) => {
 
   const errorButton = errorElement.querySelector('.error__button');
 
-  document.addEventListener('click', function (evt) {
-    let e = document.querySelector('.error__inner');
-    if (!e.contains(evt.target)) {
+  errorElement.querySelector('.error').addEventListener('click', (evt) => {
+    let element = evt.target.classList;
+    if (!element.contains('error__inner')) {
       removeAllert('.error')
     }
   });
@@ -49,9 +49,9 @@ const showSuccess = (text) => {
 
   const successButton = successElement.querySelector('.success__button');
 
-  document.addEventListener('click', function (evt) {
-    let e = document.querySelector('.success__inner');
-    if (!e.contains(evt.target)) {
+  successElement.querySelector('.success').addEventListener('click', (evt) => {
+    let element = evt.target.classList;
+    if (!element.contains('success__inner')) {
       removeAllert('.success')
     }
   });

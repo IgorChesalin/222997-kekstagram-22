@@ -1,3 +1,4 @@
+/* global noUiSlider:readonly */
 //слайдер
 const effectRadioGroup = document.querySelector('.img-upload__effects');
 const effectLevel = document.querySelector('.img-upload__effect-level');
@@ -58,8 +59,7 @@ const onEffectRadioGroupClick = (evt) => {
 
 effectRadioGroup.addEventListener('click', onEffectRadioGroupClick)
 
-//пока ошибку скрыл через window
-window.noUiSlider.create(effectLevelSlider, {
+noUiSlider.create(effectLevelSlider, {
   range: {
     min: Slider.MIN,
     max: Slider.MAX,
@@ -73,4 +73,3 @@ effectLevelSlider.noUiSlider.on('change', () => {
 
   uploadPreviewImg.style.filter = effects[lastClass.replace('effects__preview--', '')]();
 });
-
