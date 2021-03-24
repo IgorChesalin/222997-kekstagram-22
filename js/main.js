@@ -29,7 +29,7 @@ const filters = {
   },
   'filter-random': () => {
     renderPhotos(shuffleArray(photos.slice()).slice(0, 10));
-    
+
   },
   'filter-discussed': () => {
     renderPhotos(photos.slice().sort((a, b) => {
@@ -50,13 +50,18 @@ const onError = () => {
 
 request(onSuccess, onError, 'GET')
 
-filter.addEventListener('click', (evt) => {
+const test = (evt) => {
 
   if (evt.target.classList.contains('img-filters__button')) {
     removeActiveClass();
     removePhotos();
     evt.target.classList.add('img-filters__button--active')
-    const processChange = debounce(() => filters[evt.target.id]())
-    processChange()
+    filters[evt.target.id]()
   }
-});
+}
+
+filter.addEventListener('click', () => { debounce(test())
+
+})
+
+// filter.addEventListener('click', _.debounce(test, 500))
