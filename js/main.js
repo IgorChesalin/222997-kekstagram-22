@@ -50,18 +50,13 @@ const onError = () => {
 
 request(onSuccess, onError, 'GET')
 
-const test = (evt) => {
-
+const onFilterClick = debounce( (evt) => {
   if (evt.target.classList.contains('img-filters__button')) {
     removeActiveClass();
     removePhotos();
     evt.target.classList.add('img-filters__button--active')
     filters[evt.target.id]()
   }
-}
-
-filter.addEventListener('click', () => { debounce(test())
-
 })
 
-// filter.addEventListener('click', _.debounce(test, 500))
+filter.addEventListener('click', onFilterClick)

@@ -4,10 +4,10 @@ const scrollOff = document.querySelector('body');
 const bigPictureClose = document.querySelector('.big-picture__cancel');
 
 // пока скрываем лишнее
-const commentsCount = bigPicture.querySelector('.social__comment-count');
-const commentsLoader = bigPicture.querySelector('.comments-loader');
-commentsCount.classList.add('hidden');
-commentsLoader.classList.add('hidden');
+// const commentsCount = bigPicture.querySelector('.social__comment-count');
+// const commentsLoader = bigPicture.querySelector('.comments-loader');
+// commentsCount.classList.add('hidden');
+// commentsLoader.classList.add('hidden');
 
 const onBigPictureCloseClick = () => {
   bigPicture.classList.add('hidden');

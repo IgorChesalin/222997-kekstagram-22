@@ -71,7 +71,6 @@ buttonMinus.addEventListener('click', () => {
   imagePreview.style.transform = 'scale(' + scale + ')';
 })
 
-
 // Отправляем фотку
 const uploadForm = document.querySelector('.img-upload__form');
 
@@ -85,11 +84,10 @@ const onError = () => {
   showError('ЧТо-то пошло не так', 'Загрузить другой файл');
 }
 
-
 uploadForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
+  // evt.preventDefault();
 
-  request(onSuccess, onError, 'POST', new FormData(evt.target))
+  // request(onSuccess, onError, 'POST', new FormData(evt.target))
 })
 
 export { closeModal };

@@ -1,3 +1,5 @@
+import { checkEsc } from './util.js';
+
 let MAX_SYMBOLS = 20;
 let MAX_HASHTAGS = 5;
 let MAX_COMMENTLENGTH = 140;
@@ -69,8 +71,10 @@ inputHashtag.addEventListener('input', () => {
   }
 })
 
+
+
 const onEscapeDown = (evt) => {
-  if (evt.key === ('Escape' || 'Esc')) {
+  if (checkEsc(evt)) {
     evt.preventDefault();
     evt.stopPropagation();
   }

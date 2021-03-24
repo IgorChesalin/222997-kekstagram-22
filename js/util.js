@@ -27,53 +27,13 @@ const debounce = function (cb) {
   let lastTimeout = null;
 
   return (...args) => {
-    // const parameters = arguments;
-
     if (lastTimeout) {
       window.clearTimeout(lastTimeout);
     }
-
     lastTimeout = window.setTimeout(() => {
-      cb.apply(null, ...args);
+      cb(...args);
     }, DEBOUNCE_INTERVAL);
   };
 };
-
-// const test = () => {
-//   console.log('Hi')
-// }
-
-// debounce(test())
-
-// function debounce(f, ms) {
-
-//   let isCooldown = false;
-
-//   return function() {
-//     if (isCooldown) return;
-
-//     f.apply(this, arguments);
-
-//     isCooldown = true;
-
-//     setTimeout(() => isCooldown = false, ms);
-//   };
-
-// }
-
-
-
-// function debounce_leading(func, timeout = 5000){
-//   let timer;
-//   return (...args) => {
-//     if (!timer) {
-//       func.apply(this, args);
-//     }
-//     clearTimeout(timer);
-//     timer = setTimeout(() => {
-//       timer = undefined;
-//     }, timeout);
-//   };
-// }
 
 export { checkEsc, shuffleArray, debounce };
