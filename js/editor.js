@@ -85,9 +85,9 @@ const onError = () => {
 }
 
 uploadForm.addEventListener('submit', (evt) => {
-  // evt.preventDefault();
+  evt.preventDefault();
 
-  // request(onSuccess, onError, 'POST', new FormData(evt.target))
+  request(onSuccess, onError, 'POST', new FormData(evt.target))
 })
 
 export { closeModal };

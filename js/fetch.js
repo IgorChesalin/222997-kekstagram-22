@@ -13,8 +13,7 @@ const request = (onSuccess, onError, method, data) => {
     .then((response) => {
       onSuccess(response)
     })
-    .catch((error) => {
-      console.log(error)
+    .catch(() => {
       onError()
     })
 }

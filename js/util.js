@@ -23,7 +23,7 @@ const shuffleArray = (arr) => {
 // таймаут запроса
 const DEBOUNCE_INTERVAL = 500
 
-const debounce = function (cb) {
+const debounce = (cb) => {
   let lastTimeout = null;
 
   return (...args) => {

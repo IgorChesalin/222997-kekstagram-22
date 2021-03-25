@@ -71,8 +71,6 @@ inputHashtag.addEventListener('input', () => {
   }
 })
 
-
-
 const onEscapeDown = (evt) => {
   if (checkEsc(evt)) {
     evt.preventDefault();

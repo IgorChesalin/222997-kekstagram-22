@@ -5,6 +5,7 @@ const effectLevel = document.querySelector('.img-upload__effect-level');
 const effectLevelSlider = document.querySelector('.effect-level__slider');
 const uploadPreviewImg = document.querySelector('.img-upload__preview > img');
 const effectLevelValue = document.querySelector('.effect-level__value');
+let DEFAULT_EFFECT_LEVEL = 100;
 
 effectLevel.classList.add('visually-hidden')
 
@@ -48,7 +49,7 @@ const onEffectRadioGroupClick = (evt) => {
     if (lastClass !== '') {
       uploadPreviewImg.classList.remove(lastClass);
     }
-    effectLevelSlider.noUiSlider.set(100);
+    effectLevelSlider.noUiSlider.set(DEFAULT_EFFECT_LEVEL);
     let currentClass = evt.target.classList[1];
     lastClass = currentClass;
 
@@ -69,7 +70,7 @@ noUiSlider.create(effectLevelSlider, {
 });
 
 effectLevelSlider.noUiSlider.on('change', () => {
-  effectLevelValue.value = effectLevelSlider.noUiSlider.get();
+  effectLevelValue.value = Math.round(effectLevelSlider.noUiSlider.get());
 
   uploadPreviewImg.style.filter = effects[lastClass.replace('effects__preview--', '')]();
 });

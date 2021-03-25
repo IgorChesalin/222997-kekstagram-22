@@ -1,6 +1,8 @@
 const main = document.querySelector('main');
 const errorTemplate = document.querySelector('#error').content;
 const errorFragment = document.createDocumentFragment();
+const successTemplate = document.querySelector('#success').content;
+const successFragment = document.createDocumentFragment();
 
 const onAlertEscKeydown = (evt) => {
   if (evt.key === ('Escape' || 'Esc')) {
@@ -12,7 +14,6 @@ const removeAllert = (type) => {
   document.querySelector(type).remove();
   document.removeEventListener('keydown', onAlertEscKeydown);
 };
-
 
 const showError = (text, button) => {
   const errorElement = errorTemplate.cloneNode(true);
@@ -38,9 +39,6 @@ const showError = (text, button) => {
   errorFragment.appendChild(errorElement);
   main.appendChild(errorFragment);
 }
-
-const successTemplate = document.querySelector('#success').content;
-const successFragment = document.createDocumentFragment();
 
 const showSuccess = (text) => {
   const successElement = successTemplate.cloneNode(true);
