@@ -1,9 +1,13 @@
+import { checkEsc } from './util.js';
+
 const main = document.querySelector('main');
 const errorTemplate = document.querySelector('#error').content;
 const errorFragment = document.createDocumentFragment();
+const successTemplate = document.querySelector('#success').content;
+const successFragment = document.createDocumentFragment();
 
 const onAlertEscKeydown = (evt) => {
-  if (evt.key === ('Escape' || 'Esc')) {
+  if (checkEsc(evt)) {
     removeAllert();
   }
 }
@@ -13,7 +17,6 @@ const removeAllert = (type) => {
   document.removeEventListener('keydown', onAlertEscKeydown);
 };
 
-
 const showError = (text, button) => {
   const errorElement = errorTemplate.cloneNode(true);
 
@@ -22,9 +25,9 @@ const showError = (text, button) => {
 
   const errorButton = errorElement.querySelector('.error__button');
 
-  document.addEventListener('click', function (evt) {
-    let e = document.querySelector('.error__inner');
-    if (!e.contains(evt.target)) {
+  errorElement.querySelector('.error').addEventListener('click', (evt) => {
+    let element = evt.target.classList;
+    if (!element.contains('error__inner')) {
       removeAllert('.error')
     }
   });
@@ -39,9 +42,6 @@ const showError = (text, button) => {
   main.appendChild(errorFragment);
 }
 
-const successTemplate = document.querySelector('#success').content;
-const successFragment = document.createDocumentFragment();
-
 const showSuccess = (text) => {
   const successElement = successTemplate.cloneNode(true);
 
@@ -49,9 +49,9 @@ const showSuccess = (text) => {
 
   const successButton = successElement.querySelector('.success__button');
 
-  document.addEventListener('click', function (evt) {
-    let e = document.querySelector('.success__inner');
-    if (!e.contains(evt.target)) {
+  successElement.querySelector('.success').addEventListener('click', (evt) => {
+    let element = evt.target.classList;
+    if (!element.contains('success__inner')) {
       removeAllert('.success')
     }
   });

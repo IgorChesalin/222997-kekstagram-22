@@ -1,4 +1,13 @@
-//слайдер
+/* global noUiSlider:readonly */
+
+const DEFAULT_EFFECT_LEVEL = 100;
+
+const Slider = {
+  MAX: 100,
+  MIN: 0,
+  STEP: 1,
+}
+
 const effectRadioGroup = document.querySelector('.img-upload__effects');
 const effectLevel = document.querySelector('.img-upload__effect-level');
 const effectLevelSlider = document.querySelector('.effect-level__slider');
@@ -6,12 +15,6 @@ const uploadPreviewImg = document.querySelector('.img-upload__preview > img');
 const effectLevelValue = document.querySelector('.effect-level__value');
 
 effectLevel.classList.add('visually-hidden')
-
-const Slider = {
-  MAX: 100,
-  MIN: 0,
-  STEP: 1,
-}
 
 let lastClass = '';
 
@@ -47,7 +50,7 @@ const onEffectRadioGroupClick = (evt) => {
     if (lastClass !== '') {
       uploadPreviewImg.classList.remove(lastClass);
     }
-    effectLevelSlider.noUiSlider.set(100);
+    effectLevelSlider.noUiSlider.set(DEFAULT_EFFECT_LEVEL);
     let currentClass = evt.target.classList[1];
     lastClass = currentClass;
 
@@ -58,8 +61,7 @@ const onEffectRadioGroupClick = (evt) => {
 
 effectRadioGroup.addEventListener('click', onEffectRadioGroupClick)
 
-//пока ошибку скрыл через window
-window.noUiSlider.create(effectLevelSlider, {
+noUiSlider.create(effectLevelSlider, {
   range: {
     min: Slider.MIN,
     max: Slider.MAX,
@@ -69,8 +71,7 @@ window.noUiSlider.create(effectLevelSlider, {
 });
 
 effectLevelSlider.noUiSlider.on('change', () => {
-  effectLevelValue.value = effectLevelSlider.noUiSlider.get();
+  effectLevelValue.value = Math.round(effectLevelSlider.noUiSlider.get());
 
   uploadPreviewImg.style.filter = effects[lastClass.replace('effects__preview--', '')]();
 });
-
