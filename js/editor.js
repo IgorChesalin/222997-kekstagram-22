@@ -1,5 +1,12 @@
 import { request } from './fetch.js';
 import { showError, showSuccess } from './alerts.js';
+import { checkEsc } from './util.js';
+
+const Scale = {
+  MAX: 100,
+  MIN: 25,
+  STEP: 25,
+}
 
 const scrollOff = document.querySelector('body');
 const uploadModal = document.querySelector('.img-upload__overlay');
@@ -25,7 +32,7 @@ uploadModalClose.addEventListener('click', function () {
 })
 
 document.addEventListener('keydown', (evt) => {
-  if (evt.key === ('Escape' || 'Esc')) {
+  if (checkEsc(evt)) {
     closeModal();
   }
 });
@@ -35,12 +42,6 @@ const buttonPlus = uploadModal.querySelector('.scale__control--bigger');
 const buttonMinus = uploadModal.querySelector('.scale__control--smaller');
 const scaleValue = uploadModal.querySelector('.scale__control--value');
 const imagePreview = uploadModal.querySelector('.img-upload__preview > img');
-
-const Scale = {
-  MAX: 100,
-  MIN: 25,
-  STEP: 25,
-}
 
 const resetSettings = () => {
   imagePreview.style = 'transform: scale(1.00)'

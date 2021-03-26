@@ -6,6 +6,9 @@ import './editor.js';
 import './effects.js';
 import './validation.js';
 
+const DEFAULT_PREVIEW_LOAD = 25;
+const RANDOM_PREVIEW_LOAD = 10;
+
 const filter = document.querySelector('.img-filters');
 let photos = [];
 
@@ -25,10 +28,10 @@ const removePhotos = () => {
 
 const filters = {
   'filter-default': () => {
-    renderPhotos(photos.slice(0, 25))
+    renderPhotos(photos.slice(0, DEFAULT_PREVIEW_LOAD))
   },
   'filter-random': () => {
-    renderPhotos(shuffleArray(photos.slice()).slice(0, 10));
+    renderPhotos(shuffleArray(photos.slice()).slice(0, RANDOM_PREVIEW_LOAD));
 
   },
   'filter-discussed': () => {
@@ -41,7 +44,7 @@ const filters = {
 const onSuccess = (data) => {
   filter.classList.remove('img-filters--inactive');
   photos = data.slice()
-  renderPhotos(photos.slice(0, 25))
+  renderPhotos(photos.slice(0, DEFAULT_PREVIEW_LOAD))
 }
 
 const onError = () => {
@@ -50,7 +53,7 @@ const onError = () => {
 
 request(onSuccess, onError, 'GET')
 
-const onFilterClick = debounce( (evt) => {
+const onFilterClick = debounce((evt) => {
   if (evt.target.classList.contains('img-filters__button')) {
     removeActiveClass();
     removePhotos();

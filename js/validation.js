@@ -69,6 +69,12 @@ inputHashtag.addEventListener('input', () => {
   if (inputArray.length > MAX_HASHTAGS) {
     inputHashtag.setCustomValidity('Максимум 5 хэш-тегов');
   }
+
+  if (!inputHashtag.checkValidity()) {
+    inputHashtag.style.border = '2px solid red';
+  } else {
+    inputHashtag.style.border = 'none';
+  }
 })
 
 const onEscapeDown = (evt) => {

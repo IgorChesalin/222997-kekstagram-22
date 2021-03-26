@@ -1,19 +1,20 @@
 /* global noUiSlider:readonly */
-//слайдер
-const effectRadioGroup = document.querySelector('.img-upload__effects');
-const effectLevel = document.querySelector('.img-upload__effect-level');
-const effectLevelSlider = document.querySelector('.effect-level__slider');
-const uploadPreviewImg = document.querySelector('.img-upload__preview > img');
-const effectLevelValue = document.querySelector('.effect-level__value');
-let DEFAULT_EFFECT_LEVEL = 100;
 
-effectLevel.classList.add('visually-hidden')
+const DEFAULT_EFFECT_LEVEL = 100;
 
 const Slider = {
   MAX: 100,
   MIN: 0,
   STEP: 1,
 }
+
+const effectRadioGroup = document.querySelector('.img-upload__effects');
+const effectLevel = document.querySelector('.img-upload__effect-level');
+const effectLevelSlider = document.querySelector('.effect-level__slider');
+const uploadPreviewImg = document.querySelector('.img-upload__preview > img');
+const effectLevelValue = document.querySelector('.effect-level__value');
+
+effectLevel.classList.add('visually-hidden')
 
 let lastClass = '';
 

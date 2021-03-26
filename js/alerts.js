@@ -1,3 +1,5 @@
+import { checkEsc } from './util.js';
+
 const main = document.querySelector('main');
 const errorTemplate = document.querySelector('#error').content;
 const errorFragment = document.createDocumentFragment();
@@ -5,7 +7,7 @@ const successTemplate = document.querySelector('#success').content;
 const successFragment = document.createDocumentFragment();
 
 const onAlertEscKeydown = (evt) => {
-  if (evt.key === ('Escape' || 'Esc')) {
+  if (checkEsc(evt)) {
     removeAllert();
   }
 }
