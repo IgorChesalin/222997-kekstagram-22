@@ -60,7 +60,7 @@ const renderComments = (comments) => {
 
   if (comments.length > COMMENTS_LOAD_STEP && commentsLoaded.length < comments.length) {
     commentsLoader.classList.remove('hidden');
-    commentsLoader.addEventListener('click', onCommentsLoaderClick, {once: true})
+    commentsLoader.addEventListener('click', onCommentsLoaderClick, { once: true })
   } else {
     commentsLoader.classList.add('hidden');
   }
