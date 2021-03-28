@@ -18,6 +18,7 @@ inputComment.addEventListener('input', () => {
 
 inputHashtag.addEventListener('input', () => {
   inputHashtag.setCustomValidity('');
+  inputHashtag.style.border = 'none';
 
   let inputText = inputHashtag.value.toLowerCase().trim();
 

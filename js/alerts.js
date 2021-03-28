@@ -6,15 +6,24 @@ const errorFragment = document.createDocumentFragment();
 const successTemplate = document.querySelector('#success').content;
 const successFragment = document.createDocumentFragment();
 
-const onAlertEscKeydown = (evt) => {
+const removeEscapeAlert = (evt, className) => {
   if (checkEsc(evt)) {
-    removeAllert();
+    removeAllert(className);
   }
+}
+
+const onErrorEscKeydown = (evt) => {
+  removeEscapeAlert(evt, '.error')
+  document.removeEventListener('keydown', onErrorEscKeydown);
+}
+
+const onSuccessEscKeydown = (evt) => {
+  removeEscapeAlert(evt, '.success')
+  document.removeEventListener('keydown', onSuccessEscKeydown);
 }
 
 const removeAllert = (type) => {
   document.querySelector(type).remove();
-  document.removeEventListener('keydown', onAlertEscKeydown);
 };
 
 const showError = (text, button) => {
@@ -28,6 +37,7 @@ const showError = (text, button) => {
   errorElement.querySelector('.error').addEventListener('click', (evt) => {
     let element = evt.target.classList;
     if (!element.contains('error__inner')) {
+      document.removeEventListener('keydown', onErrorEscKeydown);
       removeAllert('.error')
     }
   });
@@ -36,7 +46,7 @@ const showError = (text, button) => {
     removeAllert('.error');
   })
 
-  document.addEventListener('keydown', onAlertEscKeydown);
+  document.addEventListener('keydown', onErrorEscKeydown);
 
   errorFragment.appendChild(errorElement);
   main.appendChild(errorFragment);
@@ -47,20 +57,15 @@ const showSuccess = (text) => {
 
   successElement.querySelector('.success__title').textContent = text;
 
-  const successButton = successElement.querySelector('.success__button');
-
   successElement.querySelector('.success').addEventListener('click', (evt) => {
     let element = evt.target.classList;
     if (!element.contains('success__inner')) {
+      document.removeEventListener('keydown', onSuccessEscKeydown);
       removeAllert('.success')
     }
   });
 
-  successButton.addEventListener('click', () => {
-    removeAllert('.success');
-  })
-
-  document.addEventListener('keydown', onAlertEscKeydown);
+  document.addEventListener('keydown', onSuccessEscKeydown);
 
   successFragment.appendChild(successElement);
   main.appendChild(successFragment);

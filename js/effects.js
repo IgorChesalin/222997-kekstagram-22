@@ -75,3 +75,15 @@ effectLevelSlider.noUiSlider.on('change', () => {
 
   uploadPreviewImg.style.filter = effects[lastClass.replace('effects__preview--', '')]();
 });
+
+const setDefaultLevel = () => {
+  effectLevelSlider.noUiSlider.set(DEFAULT_EFFECT_LEVEL);
+  effectLevelValue.value = DEFAULT_EFFECT_LEVEL;
+  effectLevel.classList.add('visually-hidden');
+  uploadPreviewImg.style.filter = null;
+  if (lastClass) {
+    uploadPreviewImg.classList.remove(lastClass);
+  }
+}
+
+export { setDefaultLevel }

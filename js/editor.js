@@ -1,6 +1,8 @@
 import { request } from './fetch.js';
 import { showError, showSuccess } from './alerts.js';
 import { checkEsc } from './util.js';
+import { setDefaultLevel } from './effects.js';
+
 
 const Scale = {
   MAX: 100,
@@ -18,30 +20,39 @@ uploadInput.addEventListener('change', function () {
   resetSettings();
   uploadModal.classList.remove('hidden');
   scrollOff.classList.add('modal-open');
+  document.addEventListener('keydown', onEditorFormEscapeKeydown);
+
 })
 
 // закрытие окна
 const closeModal = () => {
   uploadModal.classList.add('hidden');
   scrollOff.classList.remove('modal-open');
+  inputHashtag.style.border = 'none';
   uploadInput.value = '';
+  uploadForm.reset();
+  setDefaultLevel();
+  document.removeEventListener('keydown', onEditorFormEscapeKeydown);
 }
 
 uploadModalClose.addEventListener('click', function () {
   closeModal();
 })
 
-document.addEventListener('keydown', (evt) => {
+const onEditorFormEscapeKeydown = (evt) => {
   if (checkEsc(evt)) {
     closeModal();
   }
-});
+}
+
+
 
 // зум картинки
 const buttonPlus = uploadModal.querySelector('.scale__control--bigger');
 const buttonMinus = uploadModal.querySelector('.scale__control--smaller');
 const scaleValue = uploadModal.querySelector('.scale__control--value');
 const imagePreview = uploadModal.querySelector('.img-upload__preview > img');
+let inputHashtag = uploadModal.querySelector('.text__hashtags');
 
 const resetSettings = () => {
   imagePreview.style = 'transform: scale(1.00)'
@@ -78,7 +89,6 @@ const uploadForm = document.querySelector('.img-upload__form');
 const onSuccess = () => {
   showSuccess('Ура!')
   closeModal();
-  uploadForm.reset();
 }
 
 const onError = () => {
@@ -87,6 +97,7 @@ const onError = () => {
 
 uploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
+
 
   request(onSuccess, onError, 'POST', new FormData(evt.target))
 })
