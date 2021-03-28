@@ -76,6 +76,8 @@ const onBigPictureEscKeyDown = (evt) => {
 
 // функция вывода большой картинки/поста
 const show = (picture) => {
+  commentsCount = COMMENTS_LOAD_STEP;
+  commentsLoaded = [];
   scrollOff.classList.add('modal-open');
   bigPicture.querySelector('.big-picture__img > img').src = picture.url;
   bigPicture.querySelector('.likes-count').textContent = picture.likes;

@@ -81,7 +81,9 @@ const setDefaultLevel = () => {
   effectLevelValue.value = DEFAULT_EFFECT_LEVEL;
   effectLevel.classList.add('visually-hidden');
   uploadPreviewImg.style.filter = null;
-  uploadPreviewImg.classList.remove(lastClass);
+  if (lastClass) {
+    uploadPreviewImg.classList.remove(lastClass);
+  }
 }
 
 export { setDefaultLevel }

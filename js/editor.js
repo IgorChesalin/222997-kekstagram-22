@@ -20,6 +20,8 @@ uploadInput.addEventListener('change', function () {
   resetSettings();
   uploadModal.classList.remove('hidden');
   scrollOff.classList.add('modal-open');
+  document.addEventListener('keydown', onEditorFormEscapeKeydown);
+
 })
 
 // закрытие окна
@@ -30,17 +32,20 @@ const closeModal = () => {
   uploadInput.value = '';
   uploadForm.reset();
   setDefaultLevel();
+  document.removeEventListener('keydown', onEditorFormEscapeKeydown);
 }
 
 uploadModalClose.addEventListener('click', function () {
   closeModal();
 })
 
-document.addEventListener('keydown', (evt) => {
+const onEditorFormEscapeKeydown = (evt) => {
   if (checkEsc(evt)) {
     closeModal();
   }
-});
+}
+
+
 
 // зум картинки
 const buttonPlus = uploadModal.querySelector('.scale__control--bigger');
