@@ -16,7 +16,7 @@ const uploadInput = document.querySelector('#upload-file');
 const uploadModalClose = document.querySelector('#upload-cancel')
 
 // открываем окно фильтров после загрузки файла
-uploadInput.addEventListener('change', function () {
+uploadInput.addEventListener('change', () => {
   resetSettings();
   uploadModal.classList.remove('hidden');
   scrollOff.classList.add('modal-open');
@@ -35,7 +35,7 @@ const closeModal = () => {
   document.removeEventListener('keydown', onEditorFormEscapeKeydown);
 }
 
-uploadModalClose.addEventListener('click', function () {
+uploadModalClose.addEventListener('click', () => {
   closeModal();
 })
 

@@ -12,7 +12,7 @@ const RANDOM_PREVIEW_LOAD = 10;
 const filter = document.querySelector('.img-filters');
 let photos = [];
 
-function removeActiveClass() {
+const removeActiveClass = () => {
   let activeFilter = document.querySelector('.img-filters__button--active');
   activeFilter.classList.remove('img-filters__button--active');
 }
